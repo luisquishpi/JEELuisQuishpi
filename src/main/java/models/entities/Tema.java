@@ -29,8 +29,17 @@ public class Tema {
         this.setNombre(nombre);
         this.setPregunta(pregunta);
     }
-    public void setId(Integer id) {
-        this.id = id;
+    public Tema(Integer id,String nombre, String pregunta) {
+        this.setId(id);
+        this.setNombre(nombre);
+        this.setPregunta(pregunta);
+    }
+
+    public void setId(int id){
+        this.id=id;
+    }
+    public Integer getId() {
+        return this.id;
     }
 
     public String getNombre() {
