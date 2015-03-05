@@ -1,10 +1,17 @@
 package models.entities;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class Tema {
     public static final String TABLE = "tema";
 
     public static final String ID = "ID";
 
+    @Id
+    @GeneratedValue
     private Integer id;
 
     public static final String NOMBRE = "nombre";
@@ -18,16 +25,10 @@ public class Tema {
     public Tema() {
     }
 
-    public Tema(Integer id, String nombre, String pregunta) {
-        this.setId(id);
+    public Tema(String nombre, String pregunta) {
         this.setNombre(nombre);
         this.setPregunta(pregunta);
     }
-
-    public Integer getId() {
-        return this.id;
-    }
-
     public void setId(Integer id) {
         this.id = id;
     }
