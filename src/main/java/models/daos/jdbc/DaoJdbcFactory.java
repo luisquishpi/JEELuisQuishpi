@@ -11,8 +11,6 @@ import models.daos.DaoFactory;
 import models.daos.TemaDao;
 import models.entities.Tema;
 
-
-
 public class DaoJdbcFactory extends DaoFactory {
 
     private static final String DRIVER = "com.mysql.jdbc.Driver";
@@ -48,7 +46,7 @@ public class DaoJdbcFactory extends DaoFactory {
             Statement statement = getConnection().createStatement();
             statement.executeUpdate(String.format(DROP_TABLE, Tema.TABLE));
             statement.executeUpdate(TemaDaoJdbc.sqlToCreateTable());
-            
+
         } catch (SQLException e) {
             LogManager.getLogger(DaoJdbcFactory.class).error("Drop tables: " + e.getMessage());
         }

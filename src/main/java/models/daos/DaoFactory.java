@@ -1,7 +1,5 @@
 package models.daos;
 
-
-
 public abstract class DaoFactory {
 
     public static DaoFactory factory = null;
@@ -17,5 +15,4 @@ public abstract class DaoFactory {
 
     public abstract TemaDao getTemaDao();
 
-    
 }
