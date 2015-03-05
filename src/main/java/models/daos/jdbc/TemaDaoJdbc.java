@@ -17,7 +17,7 @@ public class TemaDaoJdbc extends GenericDaoJdbc<Tema, Integer> implements TemaDa
     private Tema create(ResultSet resultSet) {
         try {
             if (resultSet != null && resultSet.next()) {
-                return new Tema(resultSet.getString(Tema.NOMBRE),
+                return new Tema(resultSet.getInt(Tema.ID),resultSet.getString(Tema.NOMBRE),
                         resultSet.getString(Tema.PREGUNTA));
             }
         } catch (SQLException e) {
@@ -26,7 +26,7 @@ public class TemaDaoJdbc extends GenericDaoJdbc<Tema, Integer> implements TemaDa
         return null;
     }
 
-    private static final String SQL_CREATE_TABLE = "CREATE TABLE %s (%s INT NOT NULL, %s VARCHAR(255), "
+    private static final String SQL_CREATE_TABLE = "CREATE TABLE %s (%s INT NOT NULL AUTO_INCREMENT, %s VARCHAR(255), "
             + "%s VARCHAR(255), PRIMARY KEY (%s))";
 
     public static String sqlToCreateTable() {
@@ -34,12 +34,13 @@ public class TemaDaoJdbc extends GenericDaoJdbc<Tema, Integer> implements TemaDa
                 Tema.ID);
     }
 
-    private static final String SQL_INSERT = "INSERT INTO %s (%s,%s,%s) VALUES (%d,'%s','%s')";
+    private static final String SQL_INSERT = "INSERT INTO %s (%s,%s) VALUES ('%s','%s')";
 
     @Override
     public void create(Tema tema) {
         this.updateSql(String.format(SQL_INSERT, Tema.TABLE, Tema.PREGUNTA, Tema.NOMBRE,
                 tema.getPregunta(), tema.getNombre()));
+        tema.setId(this.autoId());
     }
 
     @Override
@@ -53,9 +54,9 @@ public class TemaDaoJdbc extends GenericDaoJdbc<Tema, Integer> implements TemaDa
     @Override
     public void update(Tema tema) {
         this.updateSql(String.format(SQL_UPDATE, Tema.TABLE, Tema.NOMBRE, tema.getNombre(),
-                Tema.PREGUNTA, tema.getPregunta()));
+                Tema.PREGUNTA, tema.getPregunta(), tema.getId()));
     }
-
+    
     @Override
     public void deleteById(Integer id) {
         this.updateSql(String.format(SQL_DELETE_ID, Tema.TABLE, id));
@@ -72,5 +73,5 @@ public class TemaDaoJdbc extends GenericDaoJdbc<Tema, Integer> implements TemaDa
         }
         return list;
     }
-
+    
 }
