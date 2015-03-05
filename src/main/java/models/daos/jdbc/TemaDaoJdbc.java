@@ -17,7 +17,7 @@ public class TemaDaoJdbc extends GenericDaoJdbc<Tema, Integer> implements TemaDa
     private Tema create(ResultSet resultSet) {
         try {
             if (resultSet != null && resultSet.next()) {
-                return new Tema(resultSet.getInt(Tema.ID), resultSet.getString(Tema.NOMBRE),
+                return new Tema(resultSet.getString(Tema.NOMBRE),
                         resultSet.getString(Tema.PREGUNTA));
             }
         } catch (SQLException e) {
@@ -38,8 +38,8 @@ public class TemaDaoJdbc extends GenericDaoJdbc<Tema, Integer> implements TemaDa
 
     @Override
     public void create(Tema tema) {
-        this.updateSql(String.format(SQL_INSERT, Tema.TABLE, Tema.ID, Tema.PREGUNTA, Tema.NOMBRE,
-                tema.getId(), tema.getPregunta(), tema.getNombre()));
+        this.updateSql(String.format(SQL_INSERT, Tema.TABLE, Tema.PREGUNTA, Tema.NOMBRE,
+                tema.getPregunta(), tema.getNombre()));
     }
 
     @Override
@@ -53,7 +53,7 @@ public class TemaDaoJdbc extends GenericDaoJdbc<Tema, Integer> implements TemaDa
     @Override
     public void update(Tema tema) {
         this.updateSql(String.format(SQL_UPDATE, Tema.TABLE, Tema.NOMBRE, tema.getNombre(),
-                Tema.PREGUNTA, tema.getPregunta(), tema.getId()));
+                Tema.PREGUNTA, tema.getPregunta()));
     }
 
     @Override
