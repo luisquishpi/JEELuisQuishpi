@@ -35,7 +35,6 @@ public class Voto implements Serializable {
 
     public static final String ID_TEMA = "idTema";
 
-    private int idTema;
 
     @ManyToOne
     @JoinColumn(name = "idTema")
@@ -44,17 +43,14 @@ public class Voto implements Serializable {
     public Voto() {
     }
 
-    public Voto(int valor, String ip, String nivelEstudio, int idTema) {
+    public Voto(Tema tema, String ip, String nivelEstudio, int idTema) {
         this.setValor(valor);
         this.setIp(ip);
         this.setNivelEstudio(nivelEstudio);
-        this.setIdTema(idTema);
+        this.setTema(tema);
     }
 
-    public void setIdTema(int idTema) {
-        this.idTema = idTema;
-    }
-
+   
     public void setNivelEstudio(String nivelEstudio) {
         this.nivelEstudio = nivelEstudio;
     }
@@ -87,13 +83,9 @@ public class Voto implements Serializable {
         return this.nivelEstudio;
     }
 
-    public int getIdTema() {
-        return this.idTema;
-    }
-
     @Override
     public String toString() {
-        return "Tema [id=" + id + ", idTema=" + idTema + ", valor=" + valor + ", ip=" + ip
+        return "Tema [id=" + id + ", Tema=" + tema.toString() + ", valor=" + valor + ", ip=" + ip
                 + ", nivelEstudio=" + nivelEstudio + "]";
     }
 

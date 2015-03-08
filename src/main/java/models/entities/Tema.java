@@ -20,7 +20,7 @@ public class Tema implements Serializable{
     public static final String ID = "ID";
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     public static final String NOMBRE = "nombre";
@@ -31,7 +31,7 @@ public class Tema implements Serializable{
 
     private String pregunta;
 
-    @OneToMany(mappedBy = "tema")
+    @OneToMany(mappedBy = TABLE)
     private List<Voto> votos;
 
     public Tema() {
