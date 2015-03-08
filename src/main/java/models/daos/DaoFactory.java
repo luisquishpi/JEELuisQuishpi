@@ -14,5 +14,6 @@ public abstract class DaoFactory {
     }
 
     public abstract TemaDao getTemaDao();
+    public abstract TemaDao getVotoDao();
 
 }
