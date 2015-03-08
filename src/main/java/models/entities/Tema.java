@@ -1,19 +1,26 @@
 package models.entities;
 
+import java.io.Serializable;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
-
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 
 @Entity
-public class Tema {
+@NamedQuery(name = "Tema.findAll", query = "SELECT t FROM Tema t")
+public class Tema implements Serializable{
+    private static final long serialVersionUID = 1L;
+
     public static final String TABLE = "tema";
 
     public static final String ID = "ID";
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     public static final String NOMBRE = "nombre";
@@ -24,6 +31,9 @@ public class Tema {
 
     private String pregunta;
 
+    @OneToMany(mappedBy = "tema")
+    private List<Voto> votos;
+
     public Tema() {
     }
 
@@ -31,15 +41,17 @@ public class Tema {
         this.setNombre(nombre);
         this.setPregunta(pregunta);
     }
-    public Tema(Integer id,String nombre, String pregunta) {
+
+    public Tema(Integer id, String nombre, String pregunta) {
         this.setId(id);
         this.setNombre(nombre);
         this.setPregunta(pregunta);
     }
 
-    public void setId(int id){
-        this.id=id;
+    public void setId(int id) {
+        this.id = id;
     }
+
     public Integer getId() {
         return this.id;
     }
@@ -71,5 +83,27 @@ public class Tema {
     @Override
     public String toString() {
         return "Tema [id=" + id + ", nombre=" + nombre + ", pregunta=" + pregunta + "]";
+    }
+
+    public List<Voto> getVotos() {
+        return this.votos;
+    }
+
+    public void setVotos(List<Voto> votos) {
+        this.votos = votos;
+    }
+
+    public Voto addVoto(Voto voto) {
+        getVotos().add(voto);
+        voto.setTema(this);
+
+        return voto;
+    }
+
+    public Voto removeVoto(Voto voto) {
+        getVotos().remove(voto);
+        voto.setTema(null);
+
+        return voto;
     }
 }
