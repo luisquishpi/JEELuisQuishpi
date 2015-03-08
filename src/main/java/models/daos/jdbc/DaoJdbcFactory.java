@@ -9,6 +9,7 @@ import org.apache.logging.log4j.LogManager;
 
 import models.daos.DaoFactory;
 import models.daos.TemaDao;
+import models.daos.VotoDao;
 import models.entities.Tema;
 
 public class DaoJdbcFactory extends DaoFactory {
@@ -55,5 +56,10 @@ public class DaoJdbcFactory extends DaoFactory {
     @Override
     public TemaDao getTemaDao() {
         return new TemaDaoJdbc();
+    }
+
+    @Override
+    public VotoDao getVotoDao() {
+        return null;
     }
 }
