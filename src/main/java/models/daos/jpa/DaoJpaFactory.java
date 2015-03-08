@@ -7,6 +7,7 @@ import org.apache.logging.log4j.LogManager;
 
 import models.daos.DaoFactory;
 import models.daos.TemaDao;
+import models.daos.VotoDao;
 
 
 public class DaoJpaFactory extends DaoFactory{
@@ -29,6 +30,10 @@ private static final String PERSISTENCE_UNIT = "JEELuisQuishpi";
         return new TemaDaoJpa();
     }
 
-    
+    @Override
+    public VotoDao getVotoDao() {
+        return new VotoDaoJpa();
+    }
+
 
 }
