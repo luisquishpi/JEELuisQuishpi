@@ -20,7 +20,7 @@ public class TemaDaoJpaTest {
     @BeforeClass
     public static void beforeClass() {
         DaoFactory.setFactory(new DaoJpaFactory());
-        JpaFactory.dropAndCreateTables();
+        DaoJpaFactory.dropAndCreateTables();
     }
 
     @Before
@@ -32,7 +32,6 @@ public class TemaDaoJpaTest {
 
     @Test
     public void testRead() {
-        System.out.println("id=" + tema.getId());
         assertEquals(tema, dao.read(tema.getId()));
     }
 
