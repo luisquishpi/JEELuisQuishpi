@@ -1,6 +1,9 @@
 package models.daos.jpa;
 
 import static org.junit.Assert.*;
+
+import java.util.List;
+
 import models.daos.DaoFactory;
 import models.daos.TemaDao;
 import models.entities.Tema;
@@ -55,7 +58,10 @@ public class TemaDaoJpaTest {
 
     @After
     public void after() {
-        DaoJpaFactory.dropAndCreateTables();
+        List<Tema> temas = dao.findAll();
+        for(Tema t: temas){
+            dao.deleteById(t.getId());
+        }
     }
 
 }
