@@ -37,7 +37,7 @@ public class TemaDaoJpaTest {
     }
 
     @Test
-    public void testUpdateCategory() {
+    public void testUpdateTema() {
         tema.setNombre("other");
         tema.setPregunta("other");
         dao.update(tema);
