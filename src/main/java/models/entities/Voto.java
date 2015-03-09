@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 
+import models.utils.NivelEstudio;
+
 @Entity
 @NamedQuery(name = "Voto.findAll", query = "SELECT v FROM Voto v")
 public class Voto implements Serializable {
@@ -31,7 +33,7 @@ public class Voto implements Serializable {
 
     public static final String NIVEL_ESTUDIO = "nivelEstudio";
 
-    private String nivelEstudio;
+    private NivelEstudio nivelEstudio;
 
     public static final String ID_TEMA = "idTema";
 
@@ -43,15 +45,15 @@ public class Voto implements Serializable {
     public Voto() {
     }
 
-    public Voto(Tema tema, String ip, String nivelEstudio, int idTema) {
+    
+    public Voto(Tema tema, String ip, NivelEstudio nivelEstudio, int valor) {
         this.setValor(valor);
         this.setIp(ip);
         this.setNivelEstudio(nivelEstudio);
         this.setTema(tema);
     }
 
-   
-    public void setNivelEstudio(String nivelEstudio) {
+    public void setNivelEstudio(NivelEstudio nivelEstudio) {
         this.nivelEstudio = nivelEstudio;
     }
 
@@ -79,13 +81,22 @@ public class Voto implements Serializable {
         return this.ip;
     }
 
-    public String getNivelEstudio() {
+    public NivelEstudio getNivelEstudio() {
         return this.nivelEstudio;
     }
 
     @Override
+    public boolean equals(Object obj) {
+        assert obj != null;
+        Voto other = (Voto) obj;
+        return id.equals(other.id) && ip.equals(other.ip)
+                && nivelEstudio.equals(other.nivelEstudio)
+                && valor==other.valor
+                && tema.equals(other.tema);
+    }
+    @Override
     public String toString() {
-        return "Tema [id=" + id + ", Tema=" + tema.toString() + ", valor=" + valor + ", ip=" + ip
+        return "Voto [id=" + id + ", Tema=" + tema.toString() + ", valor=" + valor + ", ip=" + ip
                 + ", nivelEstudio=" + nivelEstudio + "]";
     }
 
