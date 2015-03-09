@@ -10,8 +10,6 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import persistence.jpa.JpaFactory;
-
 public class TemaDaoJpaTest {
     private TemaDao dao;
 
@@ -57,7 +55,7 @@ public class TemaDaoJpaTest {
 
     @After
     public void after() {
-        JpaFactory.dropAndCreateTables();
+        DaoJpaFactory.dropAndCreateTables();
     }
 
 }
