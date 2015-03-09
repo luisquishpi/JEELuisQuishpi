@@ -41,6 +41,7 @@ public class TemaDaoJpaTest {
         tema.setNombre("other");
         tema.setPregunta("other");
         dao.update(tema);
+        assertEquals(tema, dao.read(tema.getId()));
     }
 
     @Test
