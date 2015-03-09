@@ -5,14 +5,13 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 @Entity
 @NamedQuery(name = "Tema.findAll", query = "SELECT t FROM Tema t")
-public class Tema implements Serializable{
+public class Tema implements Serializable {
     private static final long serialVersionUID = 1L;
 
     public static final String TABLE = "tema";
@@ -20,7 +19,7 @@ public class Tema implements Serializable{
     public static final String ID = "ID";
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private Integer id;
 
     public static final String NOMBRE = "nombre";
