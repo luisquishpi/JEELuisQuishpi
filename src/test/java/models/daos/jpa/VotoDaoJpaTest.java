@@ -41,12 +41,11 @@ public class VotoDaoJpaTest {
         this.voto = new Voto(tema, "192.168.1.1", NivelEstudio.BACHILLER, 5);
         votoDao = DaoFactory.getFactory().getVotoDao();
         votoDao.create(voto);
-        System.out.println("IdVotoBefore: " + voto.getId());
+
     }
 
     @Test
     public void testRead() {
-        System.out.println("IdVotoRead: " + voto.getId());
         assertEquals(voto, votoDao.read(voto.getId()));
     }
 
