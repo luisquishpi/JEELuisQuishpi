@@ -1,13 +1,11 @@
 package models.entities;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 
 @Entity
 @NamedQuery(name = "Tema.findAll", query = "SELECT t FROM Tema t")
@@ -29,9 +27,6 @@ public class Tema implements Serializable {
     public static final String PREGUNTA = "pregunta";
 
     private String pregunta;
-
-    @OneToMany(mappedBy = TABLE)
-    private List<Voto> votos;
 
     public Tema() {
     }
@@ -84,25 +79,4 @@ public class Tema implements Serializable {
         return "Tema [id=" + id + ", nombre=" + nombre + ", pregunta=" + pregunta + "]";
     }
 
-    public List<Voto> getVotos() {
-        return this.votos;
-    }
-
-    public void setVotos(List<Voto> votos) {
-        this.votos = votos;
-    }
-
-    public Voto addVoto(Voto voto) {
-        getVotos().add(voto);
-        voto.setTema(this);
-
-        return voto;
-    }
-
-    public Voto removeVoto(Voto voto) {
-        getVotos().remove(voto);
-        voto.setTema(null);
-
-        return voto;
-    }
 }

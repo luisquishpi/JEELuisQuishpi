@@ -6,7 +6,10 @@ import java.util.List;
 
 import models.daos.DaoFactory;
 import models.daos.TemaDao;
+import models.daos.VotoDao;
 import models.entities.Tema;
+import models.entities.Voto;
+import models.utils.NivelEstudio;
 
 import org.junit.After;
 import org.junit.Before;
@@ -15,6 +18,8 @@ import org.junit.Test;
 
 public class TemaDaoJpaTest {
     private TemaDao dao;
+
+    private VotoDao votoDao;
 
     private Tema tema;
 
@@ -28,7 +33,9 @@ public class TemaDaoJpaTest {
     public void before() {
         this.tema = new Tema("Sistemas", "Pregunta1");
         dao = DaoFactory.getFactory().getTemaDao();
+        votoDao = DaoFactory.getFactory().getVotoDao();
         dao.create(tema);
+
     }
 
     @Test
@@ -57,10 +64,17 @@ public class TemaDaoJpaTest {
         assertEquals(3, dao.findAll().size());
     }
 
+    @Test
+    public void testDeleteCascade() {
+        votoDao.create(new Voto(tema, "192.168.1.1", NivelEstudio.INGENIERO, 2));
+        votoDao.create(new Voto(tema, "192.168.1.2", NivelEstudio.BACHILLER, 8));
+        dao.deleteById(tema.getId());
+    }
+
     @After
     public void after() {
         List<Tema> temas = dao.findAll();
-        for(Tema t: temas){
+        for (Tema t : temas) {
             dao.deleteById(t.getId());
         }
     }
