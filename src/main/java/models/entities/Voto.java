@@ -9,16 +9,24 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.ForeignKey;
 
 import models.utils.NivelEstudio;
 
 @Entity
-@NamedQuery(name = "Voto.findAll", query = "SELECT v FROM Voto v")
+@NamedQueries({
+@NamedQuery(name = Voto.FIND_NUMERO_VOTOS, query = "SELECT count(v) FROM Voto v WHERE v.tema = :"+Voto.ID_TEMA_PARAM),
+@NamedQuery(name = Voto.FIND_VOTACION_MEDIA, query = "SELECT avg(v.valor) FROM Voto v WHERE v.tema = :"+Voto.ID_TEMA_PARAM)
+})
 public class Voto implements Serializable {
     private static final long serialVersionUID = 1L;
 
+    public static final String FIND_NUMERO_VOTOS="findNumeroVotos";
+    public static final String FIND_VOTACION_MEDIA="findVotacionMedia";
+    public static final String ID_TEMA_PARAM = "idTemaParam";
+    
     public static final String TABLE = "voto";
 
     @Id
