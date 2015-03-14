@@ -21,6 +21,7 @@ public class VotoDaoJpaTest {
     private TemaDao temaDao;
 
     private Tema tema;
+    private Tema tema2;
 
     private VotoDao votoDao;
 
@@ -35,8 +36,10 @@ public class VotoDaoJpaTest {
     @Before
     public void before() {
         this.tema = new Tema("Tema1", "Pregunta1");
+        this.tema2 = new Tema("Tema2", "Pregunta2");
         temaDao = DaoFactory.getFactory().getTemaDao();
         temaDao.create(tema);
+        temaDao.create(tema2);
 
         this.voto = new Voto(tema, "192.168.1.1", NivelEstudio.BACHILLER, 5);
         votoDao = DaoFactory.getFactory().getVotoDao();
@@ -69,6 +72,31 @@ public class VotoDaoJpaTest {
         votoDao.create(new Voto(tema, "192.168.1.2", NivelEstudio.INGENIERO, 2));
         votoDao.create(new Voto(tema, "192.168.1.3", NivelEstudio.BACHILLER, 8));
         assertEquals(3, votoDao.findAll().size());
+    }
+
+    @Test
+    public void testFindNumeroVotos() {
+        votoDao.create(new Voto(tema, "192.168.1.2", NivelEstudio.ESTUDIANTE, 9));
+        votoDao.create(new Voto(tema, "192.168.1.3", NivelEstudio.ESTUDIANTE, 8));
+        votoDao.create(new Voto(tema, "192.168.1.4", NivelEstudio.INGENIERO, 4));
+        votoDao.create(new Voto(tema2, "192.168.1.5", NivelEstudio.ESTUDIANTE, 5));
+        assertEquals((long)4, VotoDaoJpa.findNumeroVotos().get(0)[1]);
+        List<Object[]> results = VotoDaoJpa.findNumeroVotos();
+        for (Object[] result : results) {
+            System.out.println(result[0] + ", Votos: " + result[1]);
+        }
+    }
+
+    @Test
+    public void testFindVotacionMedia() {
+        votoDao.create(new Voto(tema, "192.168.1.2", NivelEstudio.ESTUDIANTE, 9));
+        votoDao.create(new Voto(tema, "192.168.1.2", NivelEstudio.ESTUDIANTE, 8));
+        votoDao.create(new Voto(tema, "192.168.1.2", NivelEstudio.BACHILLER, 4));
+        assertEquals(8.5, VotoDaoJpa.findVotacionMedia().get(0)[1]);
+        List<Object[]> results = VotoDaoJpa.findVotacionMedia();
+        for (Object[] result : results) {
+            System.out.println("Nivel: " + result[0] + ", Promedio: " + result[1]);
+        }
     }
 
     @After
