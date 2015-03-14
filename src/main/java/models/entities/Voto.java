@@ -14,19 +14,19 @@ import javax.persistence.NamedQuery;
 import javax.persistence.ForeignKey;
 
 import models.utils.NivelEstudio;
+import models.entities.Tema;
 
 @Entity
 @NamedQueries({
-@NamedQuery(name = Voto.FIND_NUMERO_VOTOS, query = "SELECT count(v) FROM Voto v WHERE v.tema = :"+Voto.ID_TEMA_PARAM),
-@NamedQuery(name = Voto.FIND_VOTACION_MEDIA, query = "SELECT avg(v.valor) FROM Voto v WHERE v.tema = :"+Voto.ID_TEMA_PARAM)
-})
+        @NamedQuery(name = Voto.FIND_NUMERO_VOTOS, query = "SELECT v.tema, count(v) FROM Voto v LEFT JOIN v.tema t GROUP BY v.tema"),
+        @NamedQuery(name = Voto.FIND_VOTACION_MEDIA, query = "SELECT v.nivelEstudio, avg(v.valor) as mediaVoto FROM Voto v GROUP BY v.nivelEstudio"),})
 public class Voto implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    public static final String FIND_NUMERO_VOTOS="findNumeroVotos";
-    public static final String FIND_VOTACION_MEDIA="findVotacionMedia";
-    public static final String ID_TEMA_PARAM = "idTemaParam";
-    
+    public static final String FIND_NUMERO_VOTOS = "findNumeroVotos";
+
+    public static final String FIND_VOTACION_MEDIA = "findVotacionMedia";
+
     public static final String TABLE = "voto";
 
     @Id
