@@ -43,7 +43,7 @@ public class TemaDaoJpaTest {
     @Test
     public void testRead() {
         assertEquals(tema, dao.read(tema.getId()));
-        System.out.println("Read: "+tema);
+        System.out.println("Read: " + tema);
     }
 
     @Test
@@ -52,7 +52,7 @@ public class TemaDaoJpaTest {
         tema.setPregunta("other");
         dao.update(tema);
         assertEquals(tema, dao.read(tema.getId()));
-        System.out.println("Update: "+tema);
+        System.out.println("Update: " + tema);
     }
 
     @Test
@@ -67,7 +67,7 @@ public class TemaDaoJpaTest {
         dao.create(new Tema("2", "2"));
         dao.create(new Tema("3", "3"));
         assertEquals(3, dao.findAll().size());
-        System.out.println("FindAll: "+dao.findAll().size()+" ... Ok");
+        System.out.println("FindAll: " + dao.findAll().size() + " ... Ok");
     }
 
     @Test
