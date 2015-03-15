@@ -1,7 +1,5 @@
 package controllers;
 
-
-
 public abstract class ControllerFactory {
     public static ControllerFactory factory = null;
 
@@ -15,8 +13,11 @@ public abstract class ControllerFactory {
     }
 
     public abstract VotarController getVotarCotroller();
+
     public abstract VerVotacionesController getVerVotacionesController();
+
     public abstract NuevoTemaCotroller getNuevoTemaController();
-    public abstract EliminarTemaController getEliminarTemaController();   
+
+    public abstract EliminarTemaController getEliminarTemaController();
 
 }
