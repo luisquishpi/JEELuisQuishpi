@@ -1,14 +1,16 @@
 package views.beans;
 
 import java.util.List;
-import models.daos.DaoFactory;
+
+import controllers.EliminarTemaController;
+import controlles.ejb.EliminarTemaCotrollerEjb;
 import models.daos.TemaDao;
-import models.daos.jpa.DaoJpaFactory;
 import models.entities.Tema;
 
 public class RemoveTemaView {
 
-    private TemaDao temaDao;
+    TemaDao temaDao;
+    EliminarTemaController eliminarTemaController;
 
     private List<Tema> listaTema;
 
@@ -17,7 +19,7 @@ public class RemoveTemaView {
     private Tema tema;
 
     public RemoveTemaView() {
-
+        eliminarTemaController=new EliminarTemaCotrollerEjb();
     }
 
     public String getErrorMsg() {
@@ -45,10 +47,7 @@ public class RemoveTemaView {
     }
 
     public void update() {
-        DaoFactory.setFactory(new DaoJpaFactory());
-        temaDao = DaoFactory.getFactory().getTemaDao();
-        this.listaTema = temaDao.findAll();
-        System.out.println(this.listaTema);
+        this.listaTema = eliminarTemaController.listaTemas();
     }
 
     public String process() {
@@ -56,10 +55,7 @@ public class RemoveTemaView {
             this.errorMsg = "Error en la clave, intente de nuevo"+this.tema.getClave();
             return "removeTema";
         } else {
-            System.out.println("Id a remover: "+tema.getId());
-            DaoFactory.setFactory(new DaoJpaFactory());
-            temaDao = DaoFactory.getFactory().getTemaDao();
-            temaDao.deleteById(tema.getId());
+            eliminarTemaController.removeTema(tema);
             return "home";
         }
     }

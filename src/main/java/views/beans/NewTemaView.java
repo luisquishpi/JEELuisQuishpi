@@ -1,14 +1,12 @@
 package views.beans;
 
-import models.daos.DaoFactory;
-import models.daos.TemaDao;
-import models.daos.jpa.DaoJpaFactory;
+import controllers.NuevoTemaController;
+import controlles.ejb.NuevoTemaCotrollerEjb;
 import models.entities.Tema;
 
 public class NewTemaView {
     private Tema tema;
-
-    private TemaDao temaDao;
+    
 
     public NewTemaView() {
 
@@ -23,9 +21,8 @@ public class NewTemaView {
     }
 
     public String process() {
-        DaoFactory.setFactory(new DaoJpaFactory());
-        temaDao = DaoFactory.getFactory().getTemaDao();
-        temaDao.create(tema);
+        NuevoTemaController nuevoTemaController=new NuevoTemaCotrollerEjb();
+        nuevoTemaController.saveTema(tema);
         return "home";
     }
 }
