@@ -12,6 +12,7 @@ public class ControllerEjbFactory extends ControllerFactory {
 
     private NuevoTemaController nuevoTemaController;
 
+    private EliminarTemaController eliminarTemaController;
     @Override
     public VotarController getVotarCotroller() {
         if (votarController == null)
@@ -28,12 +29,13 @@ public class ControllerEjbFactory extends ControllerFactory {
 
     @Override
     public EliminarTemaController getEliminarTemaController() {
-        return null;
+        if (eliminarTemaController == null)
+            eliminarTemaController = new EliminarTemaCotrollerEjb();
+        return eliminarTemaController;
     }
 
     @Override
     public VerVotacionesController getVerVotacionesController() {
-        // TODO Auto-generated method stub
         return null;
     }
 
