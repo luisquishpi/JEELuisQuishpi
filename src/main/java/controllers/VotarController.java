@@ -4,7 +4,6 @@ import java.util.List;
 
 import models.entities.Tema;
 import models.entities.Voto;
-import models.utils.NivelEstudio;
 
 public interface VotarController {
 
@@ -12,9 +11,7 @@ public interface VotarController {
 
     List<Tema> listTema();
 
-    String getPregunta();
-
-    List<NivelEstudio> listNivelEstudio();
+    String getPregunta(Tema tema);
 
     List<Integer> listValorVoto();
 
