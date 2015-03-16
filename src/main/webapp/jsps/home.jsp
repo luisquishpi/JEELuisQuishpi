@@ -13,9 +13,9 @@
 <body>
 <h2>Sistema de votaciones con JSP</h2>
 <a href="/web/jsp/votar">Votar</a><BR />
-<a href="/web/jsp/vervotaciones">Ver Votaciones</a><BR />
+<a href="/web/jsp/verVotaciones">Ver Votaciones</a><BR />
 <a href="/web/jsp/newTema">Añadir tema</a><BR />
-<a href="/web/jsp/eliminartema">Eliminar tema</a><BR />
+<a href="/web/jsp/removeTema">Eliminar tema</a><BR />
 </body>
 </html>
 </jsp:root>
