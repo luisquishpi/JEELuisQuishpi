@@ -4,12 +4,10 @@ import java.util.List;
 
 import controllers.EliminarTemaController;
 import controlles.ejb.EliminarTemaCotrollerEjb;
-import models.daos.TemaDao;
 import models.entities.Tema;
 
 public class RemoveTemaView {
 
-    TemaDao temaDao;
     EliminarTemaController eliminarTemaController;
 
     private List<Tema> listaTema;
@@ -51,13 +49,8 @@ public class RemoveTemaView {
     }
 
     public String process() {
-        if (!this.tema.getClave().equals("666")) {
-            this.errorMsg = "Error en la clave, intente de nuevo"+this.tema.getClave();
-            return "removeTema";
-        } else {
             eliminarTemaController.removeTema(tema);
             return "home";
-        }
     }
 
 }

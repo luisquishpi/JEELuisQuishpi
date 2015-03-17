@@ -28,8 +28,11 @@ public class Dispatcher extends HttpServlet {
             view = action;
             break;
         case "removeTema":
-            RemoveTemaView removeTemaView = new RemoveTemaView();
-            request.setAttribute(action, removeTemaView);
+            view = "loginToRemoveTema";
+            break;
+        case "loginToRemoveTema":
+            LoginToRemoveTemaView loginToRemoveTemaView=new LoginToRemoveTemaView();
+            request.setAttribute(action, loginToRemoveTemaView);
             view = action;
             break;
         default:
@@ -56,11 +59,20 @@ public class Dispatcher extends HttpServlet {
             break;
         case "removeTema":
             tema.setId(Integer.parseInt(request.getParameter("tema")));
-            tema.setClave(request.getParameter("clave"));
             RemoveTemaView removeTemaView = new RemoveTemaView();
             removeTemaView.setTema(tema);
             request.setAttribute(action, removeTemaView);
             view = removeTemaView.process();
+            break;
+        case "loginToRemoveTema":
+            LoginToRemoveTemaView loginToRemoveTemaView=new LoginToRemoveTemaView();
+            loginToRemoveTemaView.setClave(request.getParameter("clave"));
+            request.setAttribute(action, loginToRemoveTemaView);
+            view = loginToRemoveTemaView.process();
+            if(view.equals("removeTema")){
+                removeTemaView=new RemoveTemaView();
+                request.setAttribute("removeTema", removeTemaView);
+            }
             break;
         }
         this.getServletContext().getRequestDispatcher(PATH_ROOT_VIEW + view + ".jsp")
