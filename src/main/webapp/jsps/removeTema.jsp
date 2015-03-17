@@ -20,9 +20,6 @@
             </select>
         </p>
         <p>
-            Clave: <input name="clave" type="text"/>${tView.errorMsg}</p>
-        <p>
-        <p>
             <input type="submit" value="Eliminar" />
         </p>
     </form>
