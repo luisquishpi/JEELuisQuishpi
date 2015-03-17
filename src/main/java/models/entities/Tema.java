@@ -6,7 +6,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
-import javax.persistence.Transient;
 
 @Entity
 @NamedQuery(name = "Tema.findAll", query = "SELECT t FROM Tema t")
@@ -28,17 +27,6 @@ public class Tema implements Serializable {
     public static final String PREGUNTA = "pregunta";
 
     private String pregunta;
-    
-    @Transient
-    private String clave;
-    
-    public String getClave() {
-        return clave;
-    }
-
-    public void setClave(String clave) {
-        this.clave = clave;
-    }
 
     public Tema() {
     }
