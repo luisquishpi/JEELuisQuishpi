@@ -7,12 +7,9 @@ import models.entities.Voto;
 
 public interface VotarController {
 
-    void SaveVoto(Tema tema, Voto voto);
+    void SaveVoto(Voto voto);
 
-    List<Tema> listTema();
-
-    String getPregunta(Tema tema);
-
-    List<Integer> listValorVoto();
+    List<Tema> listaTema();
+    Tema findTemaById(int id);
 
 }

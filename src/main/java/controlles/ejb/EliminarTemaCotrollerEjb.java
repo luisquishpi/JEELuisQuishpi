@@ -14,7 +14,6 @@ public class EliminarTemaCotrollerEjb implements EliminarTemaController {
     
     @Override
     public void removeTema(Tema tema) {
-        DaoFactory.setFactory(new DaoJpaFactory());
         temaDao = DaoFactory.getFactory().getTemaDao();
         temaDao.deleteById(tema.getId());
     }
