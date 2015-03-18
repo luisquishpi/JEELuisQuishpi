@@ -3,7 +3,6 @@ package models.daos.jpa;
 import java.util.List;
 
 import javax.persistence.Query;
-
 import persistence.jpa.JpaFactory;
 import models.daos.VotoDao;
 import models.entities.Voto;
