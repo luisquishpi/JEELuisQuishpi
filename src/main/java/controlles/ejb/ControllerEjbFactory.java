@@ -3,7 +3,7 @@ package controlles.ejb;
 import controllers.ControllerFactory;
 import controllers.EliminarTemaController;
 import controllers.NuevoTemaController;
-import controllers.VerVotacionesController;
+import controllers.ReportController;
 import controllers.VotarController;
 
 public class ControllerEjbFactory extends ControllerFactory {
@@ -13,6 +13,9 @@ public class ControllerEjbFactory extends ControllerFactory {
     private NuevoTemaController nuevoTemaController;
 
     private EliminarTemaController eliminarTemaController;
+
+    private ReportController reportController;
+
     @Override
     public VotarController getVotarCotroller() {
         if (votarController == null)
@@ -35,8 +38,10 @@ public class ControllerEjbFactory extends ControllerFactory {
     }
 
     @Override
-    public VerVotacionesController getVerVotacionesController() {
-        return null;
+    public ReportController getReportController() {
+        if (reportController == null)
+            reportController = new ReportCotrollerEjb();
+        return reportController;
     }
 
 }
