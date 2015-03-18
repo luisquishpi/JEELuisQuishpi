@@ -40,6 +40,11 @@ public class Dispatcher extends HttpServlet {
             request.setAttribute(action, voteView);
             view = action;
             break;
+        case "report":
+            ReportView reportView=new ReportView();
+            request.setAttribute(action, reportView);
+            view = action;
+            break;
         default:
             view = "home";
         }

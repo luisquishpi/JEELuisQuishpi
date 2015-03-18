@@ -6,6 +6,7 @@ import controllers.ReportController;
 
 public class ReportView extends ViewBean {
 
+    private ReportController reportControlller;
     private List<Object[]> listNumeroVotos;
     private List<Object[]> listVotacionMedia;
     public List<Object[]> getListVotacionMedia() {
@@ -14,9 +15,9 @@ public class ReportView extends ViewBean {
     public void setListVotacionMedia(List<Object[]> listVotacionMedia) {
         this.listVotacionMedia = listVotacionMedia;
     }
-    private ReportController reportControlller;
+
     public ReportView(){
-        
+        reportControlller=getControllerFactory().getReportController();
     }
     public List<Object[]> getListNumeroVotos() {
         return listNumeroVotos;
@@ -25,6 +26,7 @@ public class ReportView extends ViewBean {
         this.listNumeroVotos = listNumeroVotos;
     }
     public void update() {
+        
         this.listNumeroVotos = reportControlller.listNumeroVotos();
         this.listVotacionMedia = reportControlller.listVotacionMedia();
     }
