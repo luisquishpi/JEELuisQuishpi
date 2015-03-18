@@ -18,7 +18,7 @@ table, th, td {
 	<c:set var="rView" scope="request" value="${report}" />
 	<div>${rView.update()}</div>
 	<form>
-		<p>Número de votos de cada tema:</p>
+		<h4>Número de votos de cada tema:</h4>
 		<table>
 			<tr>
 				<th>Tema</th>
@@ -31,7 +31,7 @@ table, th, td {
 				</tr>
 			</c:forEach>
 		</table>
-		<p>Votación media según nivel de estudio:</p>
+		<h4>Votación media según nivel de estudio:</h4>
 		<table>
 			<tr>
 				<th>Nivel de educación</th>
