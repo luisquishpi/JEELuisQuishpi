@@ -1,15 +1,15 @@
 package views.beans;
 
 import controllers.NuevoTemaController;
-import controlles.ejb.NuevoTemaCotrollerEjb;
 import models.entities.Tema;
 
-public class NewTemaView {
+public class NewTemaView extends ViewBean {
     private Tema tema;
-    
+
+    private NuevoTemaController nuevoTemaController;
 
     public NewTemaView() {
-
+        nuevoTemaController = getControllerFactory().getNuevoTemaController();
     }
 
     public void setTema(Tema tema) {
@@ -21,7 +21,6 @@ public class NewTemaView {
     }
 
     public String process() {
-        NuevoTemaController nuevoTemaController=new NuevoTemaCotrollerEjb();
         nuevoTemaController.saveTema(tema);
         return "home";
     }

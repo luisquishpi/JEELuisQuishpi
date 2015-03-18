@@ -23,7 +23,7 @@ public class Dispatcher extends HttpServlet {
         String view;
         switch (action) {
         case "newTema":
-            NewTemaView temaView=new NewTemaView();
+            NewTemaView temaView = new NewTemaView();
             request.setAttribute(action, temaView);
             view = action;
             break;
@@ -31,8 +31,13 @@ public class Dispatcher extends HttpServlet {
             view = "loginToRemoveTema";
             break;
         case "loginToRemoveTema":
-            LoginToRemoveTemaView loginToRemoveTemaView=new LoginToRemoveTemaView();
+            LoginToRemoveTemaView loginToRemoveTemaView = new LoginToRemoveTemaView();
             request.setAttribute(action, loginToRemoveTemaView);
+            view = action;
+            break;
+        case "vote":
+            VoteView voteView = new VoteView();
+            request.setAttribute(action, voteView);
             view = action;
             break;
         default:
@@ -65,14 +70,22 @@ public class Dispatcher extends HttpServlet {
             view = removeTemaView.process();
             break;
         case "loginToRemoveTema":
-            LoginToRemoveTemaView loginToRemoveTemaView=new LoginToRemoveTemaView();
+            LoginToRemoveTemaView loginToRemoveTemaView = new LoginToRemoveTemaView();
             loginToRemoveTemaView.setClave(request.getParameter("clave"));
             request.setAttribute(action, loginToRemoveTemaView);
             view = loginToRemoveTemaView.process();
-            if(view.equals("removeTema")){
-                removeTemaView=new RemoveTemaView();
+            if (view.equals("removeTema")) {
+                removeTemaView = new RemoveTemaView();
                 request.setAttribute("removeTema", removeTemaView);
             }
+            break;
+        case "vote":
+            VoteView voteView = new VoteView();
+            voteView.setNivelEstudio(request.getParameter("nivelEstudio"));
+            voteView.setIdTema(Integer.parseInt(request.getParameter("idTema")));
+            voteView.setValor(Integer.parseInt(request.getParameter("valor")));
+            request.setAttribute(action, voteView);
+            view = voteView.process();
             break;
         }
         this.getServletContext().getRequestDispatcher(PATH_ROOT_VIEW + view + ".jsp")

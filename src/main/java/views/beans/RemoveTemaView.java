@@ -3,10 +3,9 @@ package views.beans;
 import java.util.List;
 
 import controllers.EliminarTemaController;
-import controlles.ejb.EliminarTemaCotrollerEjb;
 import models.entities.Tema;
 
-public class RemoveTemaView {
+public class RemoveTemaView extends ViewBean {
 
     EliminarTemaController eliminarTemaController;
 
@@ -17,7 +16,7 @@ public class RemoveTemaView {
     private Tema tema;
 
     public RemoveTemaView() {
-        eliminarTemaController=new EliminarTemaCotrollerEjb();
+        eliminarTemaController=getControllerFactory().getEliminarTemaController();
     }
 
     public String getErrorMsg() {
