@@ -12,7 +12,7 @@
 <c:set var="tView" scope="request" value="${loginToRemoveTema}" />
 <form action="/web/jsp/loginToRemoveTema" method="post">
         <p>
-            Clave: <input name="clave" type="text"/>${tView.errorMsg}
+            Clave: <input name="clave" type="password"/>${tView.errorMsg}
         </p>
         <p>
             <input type="submit" value="Entrar" />
