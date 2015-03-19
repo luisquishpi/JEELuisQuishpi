@@ -8,8 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import models.entities.Tema;
-
 @WebServlet("/jsp/*")
 public class Dispatcher extends HttpServlet {
     private static final long serialVersionUID = 1L;
@@ -57,20 +55,18 @@ public class Dispatcher extends HttpServlet {
             throws ServletException, IOException {
         String action = request.getPathInfo().substring(1);
         String view = "home";
-        Tema tema = new Tema();
         switch (action) {
         case "newTema":
-            tema.setNombre(request.getParameter("nombre"));
-            tema.setPregunta(request.getParameter("pregunta"));
+            
             NewTemaView temaView = new NewTemaView();
-            temaView.setTema(tema);
+            temaView.setNombre(request.getParameter("nombre"));
+            temaView.setPregunta(request.getParameter("pregunta"));
             request.setAttribute(action, temaView);
             view = temaView.process();
             break;
         case "removeTema":
-            tema.setId(Integer.parseInt(request.getParameter("tema")));
             RemoveTemaView removeTemaView = new RemoveTemaView();
-            removeTemaView.setTema(tema);
+            removeTemaView.setIdTema(request.getParameter("tema"));
             request.setAttribute(action, removeTemaView);
             view = removeTemaView.process();
             break;
