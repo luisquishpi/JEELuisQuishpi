@@ -42,7 +42,6 @@ public class NewTemaView extends ViewBean {
         this.pregunta = pregunta;
     }
     public String process() {
-        System.out.println("Nombre: "+getNombre());
         tema=new Tema();
         tema.setNombre(getNombre());
         tema.setPregunta(getPregunta());
