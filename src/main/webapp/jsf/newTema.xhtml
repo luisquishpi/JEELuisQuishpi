@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Nuevo Tema</title>
+</h:head>
+<h:body>
+	<h2>Nuevo Tema</h2>
+	<h:form>
+	<p>Tema:</p>
+		<p>
+			<h:inputText id="nombre" value="#{newTemaView.nombre}" required="true" immediate="true">
+			</h:inputText>
+		</p>
+		<p>Pregunta:</p>
+		<p>
+			<h:inputText id="pregunta" value="#{newTemaView.pregunta}" required="true" immediate="true">
+			</h:inputText>
+		</p>
+		<p>
+		<h:commandButton value="Enviar" type="submit" action="#{newTemaView.process}" />
+		</p>
+	</h:form>
+	<a href="/web/jsf/home.xhtml">Volver a Home</a>
+</h:body>
+</html>
