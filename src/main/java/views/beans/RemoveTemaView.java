@@ -2,29 +2,36 @@ package views.beans;
 
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
+
 import controllers.EliminarTemaController;
 import models.entities.Tema;
 
+@ManagedBean
+@RequestScoped
 public class RemoveTemaView extends ViewBean {
 
     EliminarTemaController eliminarTemaController;
 
     private List<Tema> listaTema;
 
-    private String errorMsg;
-
     private Tema tema;
 
+    private String idTema;
+
+    public String getIdTema() {
+        return idTema;
+    }
+
+    public void setIdTema(String idTema) {
+        this.idTema = idTema;
+    }
+
     public RemoveTemaView() {
-        eliminarTemaController=getControllerFactory().getEliminarTemaController();
-    }
 
-    public String getErrorMsg() {
-        return errorMsg;
-    }
-
-    public void setErrorMsg(String errorMsg) {
-        this.errorMsg = errorMsg;
+        eliminarTemaController = getControllerFactory().getEliminarTemaController();
     }
 
     public List<Tema> getListaTema() {
@@ -43,13 +50,16 @@ public class RemoveTemaView extends ViewBean {
         this.tema = tema;
     }
 
+    @PostConstruct
     public void update() {
         this.listaTema = eliminarTemaController.listaTemas();
     }
 
     public String process() {
-            eliminarTemaController.removeTema(tema);
-            return "home";
+        tema = new Tema();
+        tema.setId(Integer.parseInt(getIdTema()));
+        eliminarTemaController.removeTema(tema);
+        return "home";
     }
 
 }
