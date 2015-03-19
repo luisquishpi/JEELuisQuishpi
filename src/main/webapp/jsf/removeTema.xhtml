@@ -9,19 +9,24 @@
 	<title>Index de JSF</title>
 </h:head>
 <h:body>
-	<h2>Eliminar Tema</h2>
 	<h:form>
-		<p>Temas:
-			<h:selectOneMenu id="s1" value="#{removeTemaView.idTema}">
-				<f:selectItems value="#{removeTemaView.listaTema}" var="tema"
-					itemValue="#{tema.id}" itemLabel="#{tema.nombre}" />
-			</h:selectOneMenu>
-		</p>
-		<p>
-			<h:commandButton value="Eliminar" type="submit"
-				action="#{removeTemaView.process}" />
-		</p>
+		<p:panel id="removeTema" header="Eliminar Tema">
+			<p:messages id="messages" autoUpdate="true" closable="true" />
+			<h:panelGrid columns="2" cellpadding="5">
+				<p:outputLabel for="temas" value="Temas:" />
+				<p:selectOneListbox id="temas" value="#{removeTemaView.idTema}" required="true">
+					<f:selectItems value="#{removeTemaView.listaTema}" var="theme"
+						itemValue="#{theme.id}" itemLabel="#{theme.nombre}" />
+					<f:ajax render="pregunta id" />
+				</p:selectOneListbox>
+				<p:outputLabel for="pregunta" value="Pregunta:" />
+                <p:inputTextarea id="pregunta" value="#{removeTemaView.pregunta}" required="true" readonly="true"/>
+				<p:spacer />
+				<p:commandButton value="Eliminar" action="#{removeTemaView.process}" />
+				<p:spacer />
+				<p:link outcome="home" value="Volver a Home"></p:link>
+			</h:panelGrid>
+		</p:panel>
 	</h:form>
-	<a href="/web/jsf/home.xhtml">Volver a Home</a>
 </h:body>
 </html>
