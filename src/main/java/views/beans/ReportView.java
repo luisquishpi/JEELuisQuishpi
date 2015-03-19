@@ -2,8 +2,11 @@ package views.beans;
 
 import java.util.List;
 
+import javax.faces.bean.ManagedBean;
+
 import controllers.ReportController;
 
+@ManagedBean
 public class ReportView extends ViewBean {
 
     private ReportController reportControlller;
