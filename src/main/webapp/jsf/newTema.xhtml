@@ -2,28 +2,30 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 	<title>Nuevo Tema</title>
 </h:head>
 <h:body>
-	<h2>Nuevo Tema</h2>
 	<h:form>
-	<p>Tema:</p>
-		<p>
-			<h:inputText id="nombre" value="#{newTemaView.nombre}" required="true">
-			</h:inputText>
-		</p>
-		<p>Pregunta:</p>
-		<p>
-			<h:inputText id="pregunta" value="#{newTemaView.pregunta}" required="true">
-			</h:inputText>
-		</p>
-		<p>
-		<h:commandButton value="Enviar" type="submit" action="#{newTemaView.process}" />
-		</p>
+		<p:panel id="newTema" header="Nuevo Tema">
+			<p:messages id="messages" autoUpdate="true" closable="true" />
+			<h:panelGrid columns="2" cellpadding="5">
+				<p:outputLabel for="nombre" value="Tema:" />
+				<p:inputText id="nombre" value="#{newTemaView.nombre}"
+					required="true" />
+				<p:outputLabel for="pregunta" value="Pregunta:" />
+				<p:inputTextarea id="pregunta" value="#{newTemaView.pregunta}"
+					required="true" />
+				<p:spacer />
+				<p:commandButton value="Enviar" action="#{newTemaView.process}" />
+				<p:spacer />
+				<p:link outcome="home" value="Volver a Home"></p:link>
+			</h:panelGrid>
+		</p:panel>
 	</h:form>
-	<a href="/web/jsf/home.xhtml">Volver a Home</a>
+
 </h:body>
 </html>
