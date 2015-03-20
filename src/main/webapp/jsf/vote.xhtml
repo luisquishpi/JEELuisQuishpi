@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Insert title here</title>
+</h:head>
+<h:body>
+	<h:form>
+		<p:panel id="vote" header="Votar">
+			<p:messages id="messages" autoUpdate="true" closable="true" />
+			<h:panelGrid columns="2" cellpadding="5">
+				<p:outputLabel for="niveles" value="Nivel de Estudio:" />
+				<p:selectOneMenu id="niveles" value="#{voteView.nivelEstudio}"
+					required="true">
+					<f:selectItems value="#{voteView.listaNivelEstudio}" var="nivel"
+						itemValue="#{nivel}" itemLabel="#{nivel}" />
+				</p:selectOneMenu>
+
+				<p:outputLabel for="temas" value="Temas:" />
+				<p:selectOneListbox id="temas" value="#{voteView.idTema}"
+					required="true">
+					<f:selectItems value="#{voteView.listaTema}" var="tema"
+						itemValue="#{tema.id}" itemLabel="#{tema.nombre}" />
+				</p:selectOneListbox>
+				
+				<p:outputLabel for="valor" value="Valorar:" />
+				<p:selectOneButton id="valor" value="#{voteView.valor}"
+					required="true">
+					<f:selectItems value="#{voteView.listaValorVoto}" var="valor"
+						itemValue="#{valor}" itemLabel="#{valor}" />
+				</p:selectOneButton>
+
+
+				<p:spacer />
+				<p:commandButton value="Votar" action="#{voteView.process}" />
+				<p:spacer />
+				<p:link outcome="home" value="Volver a Home"></p:link>
+			</h:panelGrid>
+		</p:panel>
+	</h:form>
+</h:body>
+</html>
