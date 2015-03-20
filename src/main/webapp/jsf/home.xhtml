@@ -2,22 +2,30 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 	<title>Index - Sistema de votaciones</title>
 </h:head>
 <h:body>
-	<h2>Sistema de votaciones con JSF</h2>
-	<a href="/web/jsf/vote.xhtml">Votar</a>
-	<br/>
-	<a href="/web/jsf/report.xhtml">Ver Votaciones</a>
-	<br/>
-	<a href="/web/jsf/newTema.xhtml">Añadir tema</a>
-	<br/>
-	<a href="/web/jsf/loginToRemoveTema.xhtml">Eliminar tema</a>
-	<br/>
-	<a href="/web/Index.html">Volver al Index</a>
-    <br/>
+	<h:form>
+		<p:growl autoUpdate="true" />
+		<p:panelMenu style="width:350px">
+			<p:submenu label="Sistema de votaciones con JSF">
+				<p:menuitem value="Votar" url="/jsf/vote.xhtml" icon="ui-icon-check" />
+				<p:menuitem value="Reportes" url="/jsf/report.xhtml"
+					icon="ui-icon-print" />
+				<p:menuitem value="Nuevo Tema" url="/jsf/newTema.xhtml"
+					icon="ui-icon-circle-plus" />
+				<p:menuitem value="Eliminar Tema" url="/jsf/loginToRemoveTema.xhtml"
+					icon="ui-icon-circle-minus" />
+			</p:submenu>
+			<p:submenu label="General">
+				<p:menuitem value="Regresar al Index" url="/Index.html"
+					icon="ui-icon-home" />
+			</p:submenu>
+		</p:panelMenu>
+	</h:form>
 </h:body>
 </html>
