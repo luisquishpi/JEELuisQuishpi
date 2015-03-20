@@ -4,11 +4,15 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+import javax.faces.bean.ManagedBean;
+
 import controllers.VotarController;
 import models.entities.Tema;
 import models.entities.Voto;
 import models.utils.NivelEstudio;
 
+@ManagedBean
 public class VoteView extends ViewBean {
 
     private VotarController votarController;
@@ -24,6 +28,8 @@ public class VoteView extends ViewBean {
     private int idTema;
 
     private int valor;
+
+    private String pregunta;
 
     private String nivelEstudio;
 
@@ -75,7 +81,7 @@ public class VoteView extends ViewBean {
     public void setValor(int valor) {
         this.valor = valor;
     }
-   
+
     public String getNivelEstudio() {
         return nivelEstudio;
     }
@@ -92,6 +98,7 @@ public class VoteView extends ViewBean {
         this.idTema = idTema;
     }
 
+    @PostConstruct
     public void update() {
         this.listaTema = votarController.listaTema();
         this.listaNivelEstudio = this.getListaNivelEstudio();
@@ -100,7 +107,7 @@ public class VoteView extends ViewBean {
 
     public String process() {
         voto = new Voto();
-        String ip="localhost";
+        String ip = "localhost";
         try {
             ip = InetAddress.getLocalHost().getHostAddress();
         } catch (UnknownHostException e) {
@@ -111,6 +118,14 @@ public class VoteView extends ViewBean {
         voto.setIp(ip);
         votarController.SaveVoto(voto);
         return "home";
+    }
+
+    public String getPregunta() {
+        return pregunta;
+    }
+
+    public void setPregunta(String pregunta) {
+        this.pregunta = pregunta;
     }
 
 }
