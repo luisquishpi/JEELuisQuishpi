@@ -2,6 +2,7 @@ package views.beans;
 
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 
 import controllers.ReportController;
@@ -28,8 +29,8 @@ public class ReportView extends ViewBean {
     public void setListaVotosCadaTema(List<Object[]> listNumeroVotos) {
         this.listNumeroVotos = listNumeroVotos;
     }
-    public void update() {
-        
+    @PostConstruct
+    public void update() {        
         this.listNumeroVotos = reportControlller.listNumeroVotos();
         this.listVotacionMedia = reportControlller.listVotacionMedia();
     }

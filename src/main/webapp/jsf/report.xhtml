@@ -1,11 +1,43 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>Reporte</title>
-</head>
-<body>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Reportes</title>
+</h:head>
+<h:body>
+	<h:form>
+		<p:panel id="report" header="Reportes">
+		  <p:panel id="report1" header="Número de votos por tema">
+			<p:dataTable var="r" value="#{reportView.listNumeroVotos}">
+				<p:column headerText="Tema/Pregunta">
+				    [<h:outputText value="#{r[0].nombre}" />] : 
+				    <h:outputText value="&lt;br /&gt;" escape="false" />
+					<h:outputText value="#{r[0].pregunta}" />
+				</p:column>
+				<p:column headerText="Votos">
+					<h:outputText value="#{r[1]}" />
+				</p:column>
+			</p:dataTable>
+			</p:panel>			
+			<h:outputText value="&lt;br /&gt;" escape="false" /> 
+			<p:panel id="report2" header="Promedio de votos por nivel de educación">
+			<p:dataTable var="r" value="#{reportView.listVotacionMedia}">
+                <p:column headerText="Nivel de Educación">
+                    <h:outputText value="#{r[0]}" />
+                </p:column>
+                <p:column headerText="Votos promedio">
+                    <h:outputText value="#{r[1]}" />
+                </p:column>
+            </p:dataTable>
+            </p:panel>
+            <h:outputText value="&lt;br /&gt;" escape="false" /> 
+            <p:link outcome="home" value="Volver a Home"></p:link>
+		</p:panel>
+	</h:form>
 
-</body>
+</h:body>
 </html>
