@@ -25,7 +25,10 @@
 					required="true">
 					<f:selectItems value="#{voteView.listaTema}" var="tema"
 						itemValue="#{tema.id}" itemLabel="#{tema.nombre}" />
+						<f:ajax render="pregunta" />
 				</p:selectOneListbox>
+				<p:outputLabel for="pregunta" value="Pregunta:" />
+                <p:inputTextarea id="pregunta" value="#{voteView.pregunta}" required="true" readonly="true"/>
 
 				<p:outputLabel for="valor" value="Valorar:" />
 				<p:selectOneButton id="valor" value="#{voteView.valor}"

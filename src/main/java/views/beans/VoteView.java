@@ -32,6 +32,7 @@ public class VoteView extends ViewBean {
     private String pregunta;
 
     private String nivelEstudio;
+    private int index;
 
     public VoteView() {
         votarController = getControllerFactory().getVotarCotroller();
@@ -96,6 +97,10 @@ public class VoteView extends ViewBean {
 
     public void setIdTema(int idTema) {
         this.idTema = idTema;
+        try {
+            this.updatePregunta();
+        } catch (Exception e) {
+        }
     }
 
     @PostConstruct
@@ -103,8 +108,18 @@ public class VoteView extends ViewBean {
         this.listaTema = votarController.listaTema();
         this.listaNivelEstudio = this.getListaNivelEstudio();
         this.listaValorVoto = this.getListaValorVoto();
+        this.updatePregunta();
     }
-
+    public void updatePregunta() {
+        index = -1;
+        for (int i = 0; i < this.listaTema.size(); i++) {
+            Tema t = (Tema) this.listaTema.get(i);
+            if (t.getId() == this.idTema)
+                index = i;
+        }
+        if (index != -1)
+            this.pregunta = listaTema.get(index).getPregunta();
+    }
     public String process() {
         voto = new Voto();
         String ip = "localhost";
