@@ -16,6 +16,7 @@
 <a href="/web/jsp/report">Ver Votaciones</a><BR />
 <a href="/web/jsp/newTema">Añadir tema</a><BR />
 <a href="/web/jsp/loginToRemoveTema">Eliminar tema</a><BR />
+<a href="/web/Index.html">Volver al Index</a>
 </body>
 </html>
 </jsp:root>
