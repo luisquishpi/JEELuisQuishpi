@@ -31,7 +31,13 @@ public class LoginToRemoveTemaView {
     public String process() {
         if (!this.getClave().equals("666")) {
             this.setErrorMsg("Error en la clave, intente de nuevo");
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Clave incorrecto, intente de nuevo",""));
+            try {
+                FacesContext.getCurrentInstance().addMessage(
+                        null,
+                        new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                                "Clave incorrecto, intente de nuevo", ""));
+            } catch (Exception e) {
+            }
             return "loginToRemoveTema";
         } else {
             return "removeTema";
