@@ -4,7 +4,7 @@ import java.util.List;
 
 import controllers.ReportController;
 
-public class ReportCotrollerWs implements ReportController {
+public class ReportCotrollerWs extends ControllerWs implements ReportController {
 
     @Override
     public List<Object[]> listNumeroVotos() {

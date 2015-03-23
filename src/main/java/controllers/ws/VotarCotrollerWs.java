@@ -6,7 +6,7 @@ import models.entities.Tema;
 import models.entities.Voto;
 import controllers.VotarController;
 
-public class VotarCotrollerWs implements VotarController {
+public class VotarCotrollerWs extends ControllerWs implements VotarController {
 
     @Override
     public void SaveVoto(Voto voto) {
