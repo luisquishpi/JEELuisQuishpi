@@ -8,7 +8,7 @@ public class ControllerWs {
 
     private static final int PORT = 8080;
 
-    private static final String WEB = "/TicTacToe/rest";
+    private static final String WEB = "/web/rest";
 
     private static final String URI = PROTOCOL + "://" + HOST + ":" + PORT + WEB;
 
