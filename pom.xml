@@ -4,6 +4,7 @@
 	<groupId>es.upm.miw</groupId>
 	<artifactId>web</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
 	<dependencies>
 		<dependency>
 			<groupId>javax</groupId>
@@ -53,8 +54,26 @@
 			<artifactId>eclipselink</artifactId>
 			<version>2.5.0</version>
 		</dependency>
+		
+		      <dependency>
+            <groupId>org.glassfish.jersey.containers</groupId>
+            <artifactId>jersey-container-jdk-http</artifactId>
+            <version>2.16</version>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.jersey.containers</groupId>
+            <artifactId>jersey-container-servlet</artifactId>
+            <version>2.14</version>
+        </dependency>
+        <!-- Required only when you are using JAX-RS Client -->
+        <dependency>
+            <groupId>org.glassfish.jersey.core</groupId>
+            <artifactId>jersey-client</artifactId>
+            <version>2.14</version>
+        </dependency>
+		
+		
 	</dependencies>
-	<packaging>war</packaging>
 	<build>
 		<resources>
 			<resource>
