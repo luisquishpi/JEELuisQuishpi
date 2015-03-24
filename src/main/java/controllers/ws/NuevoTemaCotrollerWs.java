@@ -1,23 +1,29 @@
 package controllers.ws;
 
-import models.daos.DaoFactory;
-import models.daos.TemaDao;
+import ws.TemaUris;
 import models.entities.Tema;
 import controllers.NuevoTemaController;
 
 public class NuevoTemaCotrollerWs extends ControllerWs implements NuevoTemaController {
 
-    private TemaDao temaDao;
-
+    private boolean resultado;
     @Override
     public void saveTema(Tema tema) {
-        temaDao = DaoFactory.getFactory().getTemaDao();
-        temaDao.create(tema);
+        this.setResultado(false);
+        this.setResultado(ControllerWs.buildWebServiceManager(TemaUris.PATH_TEMAS,TemaUris.PATH_ID_PARAM)
+        .create(tema));
     }
-
     @Override
     public boolean existTema(Tema tema) {
         return false;
+    }
+
+    public boolean isResultado() {
+        return resultado;
+    }
+
+    public void setResultado(boolean resultado) {
+        this.resultado = resultado;
     }
 
 }
