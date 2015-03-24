@@ -15,4 +15,7 @@ public class ControllerWs {
     public static String getUri() {
         return URI;
     }
+    protected static WsManager buildWebServiceManager(String... paths){
+        return new WsManager(URI, paths);
+    }
 }
