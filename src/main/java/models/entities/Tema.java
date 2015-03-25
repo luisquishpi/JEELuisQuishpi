@@ -6,9 +6,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @NamedQuery(name = "Tema.findAll", query = "SELECT t FROM Tema t")
+@XmlRootElement
 public class Tema implements Serializable {
     private static final long serialVersionUID = 1L;
 

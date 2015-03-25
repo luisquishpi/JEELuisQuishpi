@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.ForeignKey;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import models.utils.NivelEstudio;
 import models.entities.Tema;
@@ -20,6 +21,7 @@ import models.entities.Tema;
 @NamedQueries({
         @NamedQuery(name = Voto.FIND_NUMERO_VOTOS, query = "SELECT v.tema, count(v) FROM Voto v LEFT JOIN v.tema t GROUP BY v.tema"),
         @NamedQuery(name = Voto.FIND_VOTACION_MEDIA, query = "SELECT v.nivelEstudio, avg(v.valor) as mediaVoto FROM Voto v GROUP BY v.nivelEstudio"),})
+@XmlRootElement
 public class Voto implements Serializable {
     private static final long serialVersionUID = 1L;
 
