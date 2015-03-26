@@ -3,6 +3,7 @@ package ws;
 import static org.junit.Assert.*;
 import models.entities.Tema;
 
+import org.apache.logging.log4j.LogManager;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -22,8 +23,10 @@ public class TemaSourceTest extends ResourceTest {
 
     @Test
     public void createTest() {
+        LogManager.getLogger(this.getClass()).debug(TemaUris.PATH_TEMAS);
         wsManager = new WsManager(URI, TemaUris.PATH_TEMAS);
         assertTrue(wsManager.create(this.tema1));
+        
     }
 
 }

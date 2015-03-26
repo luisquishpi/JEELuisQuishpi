@@ -23,13 +23,14 @@ public class TemaSource {
     private void debug(String msg) {
         LogManager.getLogger(this.getClass()).debug(TemaUris.PATH_TEMAS + msg);
     }
+
     @POST
     @Consumes(MediaType.APPLICATION_XML)
     public Response create(Tema tema) {
         Response result;
-        DaoFactory.getFactory().getTemaDao().create(tema);;
+        DaoFactory.getFactory().getTemaDao().create(tema);
         result = Response.created(URI.create(TemaUris.PATH_TEMAS)).build();
-        this.debug(" /POST: create "+tema.getId());
+        this.debug(" /POST: create Tema Id:" + tema.getId());
         return result;
 
     }
