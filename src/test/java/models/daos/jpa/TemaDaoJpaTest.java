@@ -27,7 +27,6 @@ public class TemaDaoJpaTest {
     public static void beforeClass() {
         DaoFactory.setFactory(new DaoJpaFactory());
         DaoJpaFactory.dropAndCreateTables();
-        System.out.println("beforeclass...");
     }
 
     @Before
@@ -36,14 +35,11 @@ public class TemaDaoJpaTest {
         dao = DaoFactory.getFactory().getTemaDao();
         votoDao = DaoFactory.getFactory().getVotoDao();
         dao.create(tema);
-        System.out.println("----------- Before ------------");
-        System.out.println(tema);
     }
 
     @Test
     public void testRead() {
         assertEquals(tema, dao.read(tema.getId()));
-        System.out.println("Read: " + tema);
     }
 
     @Test
@@ -52,14 +48,12 @@ public class TemaDaoJpaTest {
         tema.setPregunta("other");
         dao.update(tema);
         assertEquals(tema, dao.read(tema.getId()));
-        System.out.println("Update: " + tema);
     }
 
     @Test
     public void testDeleteByID() {
         dao.deleteById(tema.getId());
         assertNull(dao.read(tema.getId()));
-        System.out.println("DeleteById... Ok");
     }
 
     @Test
@@ -67,7 +61,6 @@ public class TemaDaoJpaTest {
         dao.create(new Tema("2", "2"));
         dao.create(new Tema("3", "3"));
         assertEquals(3, dao.findAll().size());
-        System.out.println("FindAll: " + dao.findAll().size() + " ... Ok");
     }
 
     @Test
@@ -75,7 +68,6 @@ public class TemaDaoJpaTest {
         votoDao.create(new Voto(tema, "192.168.1.1", NivelEstudio.INGENIERO, 2));
         votoDao.create(new Voto(tema, "192.168.1.2", NivelEstudio.BACHILLER, 8));
         dao.deleteById(tema.getId());
-        System.out.println("DeleteCascade... Ok");
     }
 
     @After
@@ -84,8 +76,6 @@ public class TemaDaoJpaTest {
         for (Tema t : temas) {
             dao.deleteById(t.getId());
         }
-        System.out.println("Delete All temas... Ok");
-        System.out.println("----------- After ------------");
     }
 
 }
